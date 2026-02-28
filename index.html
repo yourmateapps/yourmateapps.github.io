@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Mate Apps – Mobile Apps for Everyone</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --bg: #0f0f12;
-      --surface: #1a1a1f;
-      --surface-hover: #222228;
-      --text: #e8e8ed;
-      --text-muted: #9a9aa8;
-      --accent: #7c5cff;
-      --accent-soft: rgba(124, 92, 255, 0.15);
-      --border: #2a2a32;
-      --radius: 12px;
-      --radius-lg: 16px;
+      --bg-dark: #0a0a0f;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-hover: rgba(255, 255, 255, 0.06);
+
+      --text-main: #f8f9fa;
+      --text-muted: #a1a1b5;
+
+      --accent-gradient: linear-gradient(135deg, #7c5cff 0%, #00d2ff 100%);
+      --accent-color: #7c5cff;
+
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -28,192 +36,358 @@
     }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       line-height: 1.6;
       min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Background Glows */
+    .bg-glow {
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: -1;
+      opacity: 0.15;
+      animation: float 20s ease-in-out infinite alternate;
+    }
+
+    .glow-1 {
+      top: -100px;
+      left: -200px;
+      background: #7c5cff;
+    }
+
+    .glow-2 {
+      bottom: -100px;
+      right: -200px;
+      background: #00d2ff;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(50px, 50px) scale(1.1);
+      }
     }
 
     .container {
-      max-width: 960px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
     }
 
     header {
       text-align: center;
-      padding: 4rem 0 3rem;
-      border-bottom: 1px solid var(--border);
+      padding: 6rem 0 4rem;
     }
 
     .logo {
-      font-family: 'Fraunces', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.02em;
+      font-family: 'Outfit', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+      filter: drop-shadow(0px 4px 20px rgba(124, 92, 255, 0.3));
     }
 
     .tagline {
       color: var(--text-muted);
-      font-size: 1rem;
-      margin-top: 0.5rem;
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 400;
     }
 
     .apps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 3rem 0;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      padding: 2rem 0 5rem;
     }
 
+    /* Glassmorphism Cards */
     .app-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
       border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      transition: background 0.2s, border-color 0.2s;
+      padding: 2.5rem;
+      transition: var(--transition);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Subtle top highlight for glass effect */
+    .app-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      opacity: 0.5;
     }
 
     .app-card:hover {
-      background: var(--surface-hover);
-      border-color: var(--accent);
+      background: var(--glass-hover);
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(124, 92, 255, 0.1);
     }
 
-    .app-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: var(--radius);
-      background: var(--accent-soft);
+    .app-icon-wrapper {
+      width: 80px;
+      height: 80px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px;
+      border: 1px solid var(--glass-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--accent);
+      box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.05);
+      transition: var(--transition);
+    }
+
+    .app-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+      transition: var(--transition);
+    }
+
+    .app-card:hover .app-icon-wrapper {
+      transform: scale(1.05) rotate(-2deg);
+      border-color: rgba(124, 92, 255, 0.3);
     }
 
     .app-name {
-      font-family: 'Fraunces', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
     }
 
     .app-desc {
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 1rem;
       flex-grow: 1;
+      line-height: 1.7;
     }
 
     .app-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 1rem;
+      margin-top: auto;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
+      justify-content: center;
+      padding: 0.75rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: white;
+      background: var(--accent-gradient);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(124, 92, 255, 0.3);
+      position: relative;
+      z-index: 1;
+      border: none;
+    }
+
+    /* Gradient button hover effect */
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #00d2ff 0%, #7c5cff 100%);
+      border-radius: var(--radius-sm);
+      z-index: -1;
+      transition: opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
     }
 
     .btn-primary:hover {
-      background: #8b6fff;
+      box-shadow: 0 8px 25px rgba(124, 92, 255, 0.5);
+      transform: translateY(-2px);
     }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      border: 1px solid var(--glass-border);
     }
 
     .btn-secondary:hover {
-      color: var(--text);
-      border-color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      color: #fff;
     }
 
     footer {
       text-align: center;
-      padding: 3rem 0 2rem;
-      border-top: 1px solid var(--border);
+      padding: 3rem 0;
+      border-top: 1px solid var(--glass-border);
       color: var(--text-muted);
-      font-size: 0.875rem;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
     }
 
     footer a {
-      color: var(--accent);
+      color: var(--text-main);
       text-decoration: none;
+      transition: var(--transition);
+      border-bottom: 1px solid transparent;
     }
 
     footer a:hover {
-      text-decoration: underline;
+      color: var(--accent-color);
+      border-bottom-color: var(--accent-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 2.5rem;
+      }
+
+      .app-card {
+        padding: 2rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
+  <!-- Ambient Background -->
+  <div class="bg-glow glow-1"></div>
+  <div class="bg-glow glow-2"></div>
+
   <div class="container">
     <header>
       <h1 class="logo">Your Mate Apps</h1>
-      <p class="tagline">Carefully crafted apps for devotion, learning, gaming & productivity</p>
+      <p class="tagline">Carefully crafted experiences for devotion, learning, gaming, and productivity.</p>
     </header>
 
     <main class="apps-grid">
+      <!-- Stotra Mitra -->
       <article class="app-card">
-        <div class="app-icon">SM</div>
-        <h2 class="app-name">Stotra Mitra</h2>
-        <p class="app-desc">Your companion for daily devotion. Read 250+ stotras and vratas in nine Indian languages—anytime, anywhere.</p>
+        <div class="app-icon-wrapper">
+          <img src="icons/stotramitra.png" alt="Stotra Mitra Icon" class="app-icon"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%237c5cff\' rx=\'20\'/><text x=\'50\' y=\'50\' fill=\'white\' font-size=\'30\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'central\'>SM</text></svg>'">
+        </div>
+        <div class="app-content">
+          <h2 class="app-name">Stotra Mitra</h2>
+          <p class="app-desc">Your companion for daily devotion. Read 250+ stotras and vratas in nine Indian
+            languages—anytime, anywhere.</p>
+        </div>
         <div class="app-links">
           <a href="stotra-mitra/" class="btn btn-primary">App Info</a>
-          <a href="https://play.google.com/store/apps/details?id=com.shloka.stotramitra" class="btn btn-secondary">Play Store</a>
-          <a href="stotra-mitra/privacy-policy.html" class="btn btn-secondary">Privacy Policy</a>
+          <a href="https://play.google.com/store/apps/details?id=com.shloka.stotramitra" target="_blank"
+            class="btn btn-secondary">Play Store</a>
+          <a href="stotra-mitra/privacy-policy.html" class="btn btn-secondary">Privacy</a>
         </div>
       </article>
 
+      <!-- Word Mate -->
       <article class="app-card">
-        <div class="app-icon">WM</div>
-        <h2 class="app-name">Word Mate</h2>
-        <p class="app-desc">Look up definitions, explore meanings, and sharpen your vocabulary with the built-in Hangman game.</p>
+        <div class="app-icon-wrapper">
+          <img src="icons/wordmate.png" alt="Word Mate Icon" class="app-icon"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%2300d2ff\' rx=\'20\'/><text x=\'50\' y=\'50\' fill=\'white\' font-size=\'30\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'central\'>WM</text></svg>'">
+        </div>
+        <div class="app-content">
+          <h2 class="app-name">Word Mate</h2>
+          <p class="app-desc">Look up definitions, explore meanings, and sharpen your vocabulary with the built-in
+            Hangman mini-game.</p>
+        </div>
         <div class="app-links">
           <a href="word-mate/" class="btn btn-primary">App Info</a>
-          <a href="https://play.google.com/store/apps/details?id=com.english.dictionary.englishdictionary" class="btn btn-secondary">Play Store</a>
-          <a href="word-mate/privacy-policy.html" class="btn btn-secondary">Privacy Policy</a>
+          <a href="https://play.google.com/store/apps/details?id=com.english.dictionary.englishdictionary"
+            target="_blank" class="btn btn-secondary">Play Store</a>
+          <a href="word-mate/privacy-policy.html" class="btn btn-secondary">Privacy</a>
         </div>
       </article>
 
+      <!-- RetroPal -->
       <article class="app-card">
-        <div class="app-icon">RP</div>
-        <h2 class="app-name">RetroPal</h2>
-        <p class="app-desc">Fast, lightweight retro emulator for GB, GBC, GBA, NES & SNES. Optimized for phones, tablets, and TV.</p>
+        <div class="app-icon-wrapper">
+          <img src="icons/retropal.png" alt="RetroPal Icon" class="app-icon"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ff0055\' rx=\'20\'/><text x=\'50\' y=\'50\' fill=\'white\' font-size=\'30\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'central\'>RP</text></svg>'">
+        </div>
+        <div class="app-content">
+          <h2 class="app-name">RetroPal</h2>
+          <p class="app-desc">Fast, lightweight retro emulator for GB, GBC, GBA, NES & SNES. Optimized for phones,
+            tablets, and TV screens.</p>
+        </div>
         <div class="app-links">
           <a href="retropal/" class="btn btn-primary">App Info</a>
-          <a href="https://play.google.com/store/apps/details?id=com.yourmateapps.retropal" class="btn btn-secondary">Play Store</a>
-          <a href="retropal/privacy-policy.html" class="btn btn-secondary">Privacy Policy</a>
+          <a href="https://play.google.com/store/apps/details?id=com.yourmateapps.retropal" target="_blank"
+            class="btn btn-secondary">Play Store</a>
+          <a href="retropal/privacy-policy.html" class="btn btn-secondary">Privacy</a>
         </div>
       </article>
 
+      <!-- PDFHelper -->
       <article class="app-card">
-        <div class="app-icon">PH</div>
-        <h2 class="app-name">PDFHelper</h2>
-        <p class="app-desc">Merge, split, and convert PDFs with ease. All processing done locally—your files never leave your device.</p>
+        <div class="app-icon-wrapper">
+          <img src="icons/pdfhelper.png" alt="PDFHelper Icon" class="app-icon"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%23ffaa00\' rx=\'20\'/><text x=\'50\' y=\'50\' fill=\'white\' font-size=\'30\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'central\'>PH</text></svg>'">
+        </div>
+        <div class="app-content">
+          <h2 class="app-name">PDFHelper</h2>
+          <p class="app-desc">Merge, split, and convert PDFs with ease. Processing is done completely locally—your files
+            never leave your device.</p>
+        </div>
         <div class="app-links">
           <a href="pdfhelper/" class="btn btn-primary">App Info</a>
           <a href="#" class="btn btn-secondary">Play Store</a>
-          <a href="pdfhelper/privacy-policy.html" class="btn btn-secondary">Privacy Policy</a>
+          <a href="pdfhelper/privacy-policy.html" class="btn btn-secondary">Privacy</a>
         </div>
       </article>
     </main>
@@ -223,4 +397,5 @@
     </footer>
   </div>
 </body>
+
 </html>

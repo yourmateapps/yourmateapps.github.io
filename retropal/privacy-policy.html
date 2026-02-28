@@ -1,70 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy – RetroPal | Your Mate Apps</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    rel="stylesheet">
   <style>
     :root {
-      --bg: #0f0f12;
-      --surface: #1a1a1f;
-      --text: #e8e8ed;
-      --text-muted: #9a9aa8;
-      --accent: #7c5cff;
+      --bg-dark: #0a0a0f;
+      --text-main: #f8f9fa;
+      --text-muted: #a1a1b5;
+      --accent-color: #7c5cff;
       --border: #2a2a32;
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; }
-    .container { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .back { display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 2rem; color: var(--text-muted); font-size: 0.9rem; }
-    .back:hover { color: var(--text); }
-    h1 { font-family: 'Fraunces', serif; font-size: 1.75rem; margin-bottom: 0.5rem; }
-    .meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
-    h2 { font-size: 1.1rem; margin: 1.75rem 0 0.75rem; color: var(--text); }
-    p { margin-bottom: 1rem; }
-    ul { margin: 0.5rem 0 1rem 1.5rem; }
-    li { margin-bottom: 0.4rem; }
-    .legal-notice { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted); }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 2rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .back:hover {
+      color: var(--text-main);
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .meta {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      margin: 2rem 0 1rem;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    ul {
+      margin: 0.5rem 0 1.5rem 1.5rem;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    .legal-notice {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
-    <a href="/" class="back">← Back to Your Mate Apps</a>
+    <a href="../" class="back">← Back to Your Mate Apps</a>
     <h1>Privacy Policy – RetroPal</h1>
-    <p class="meta">Effective Date: January 2026 | Developer: Your Mate Apps</p>
+    <p class="meta">Effective Date: January 2026<br>Developer: Your Mate Apps</p>
 
-    <p>RetroPal ("we", "our", or "us") respects your privacy. This policy explains how information is handled when you use the RetroPal application.</p>
+    <p>RetroPal ("we", "our", or "us") respects your privacy. This Privacy Policy explains how information is collected
+      and used when you use the RetroPal application.</p>
 
-    <h2>1. Game Files and Storage</h2>
-    <p>RetroPal requires storage access to load user-provided game files and to store save data (SRAM) locally on your device. All game files and save files remain on your device and are never uploaded to any server.</p>
+    <h2>1. Game Files and Local Storage</h2>
+    <p>RetroPal requires storage access to load user-provided game files and to store save data (SRAM) locally on your
+      device.</p>
+    <p>All game files remain on your device unless you choose to enable cloud backup.</p>
 
-    <h2>2. RetroAchievements (Optional)</h2>
-    <p>If you choose to log in to RetroAchievements, your username and API key are used solely to connect to the RetroAchievements service via secure HTTPS. We do not store your credentials or have access to your RetroAchievements account beyond facilitating the connection.</p>
+    <h2>2. Google Sign-In (Optional)</h2>
+    <p>RetroPal offers optional Google Sign-In to enable cloud backup features.</p>
+    <p>When you sign in with Google, we receive basic account information such as:</p>
+    <ul>
+      <li>Your Google account email address</li>
+      <li>A unique account identifier</li>
+    </ul>
+    <p>This information is used solely to authenticate your account and enable Google Drive backup functionality. We do
+      not sell or share your account information.</p>
 
-    <h2>3. Advertising</h2>
-    <p>RetroPal displays ads through Google AdMob. AdMob may collect device identifiers (such as advertising ID), usage data, and other information according to its own <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>.</p>
+    <h2>3. Google Drive Backup (Optional)</h2>
+    <p>If you enable cloud backup, save files may be stored in your personal Google Drive account.</p>
+    <p>These files:</p>
+    <ul>
+      <li>Are stored in your own Google Drive</li>
+      <li>Are accessible only to you</li>
+      <li>Are not stored on our servers</li>
+    </ul>
+    <p>You may revoke access at any time via your Google account settings.</p>
 
-    <h2>4. Analytics</h2>
-    <p>We use Firebase Analytics to understand how the app is used and to improve performance. This service collects anonymized data such as app opens, screen views, and general device information. No personally identifiable information is collected. See <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Privacy</a> for details.</p>
+    <h2>4. RetroAchievements (Optional)</h2>
+    <p>If you log in to RetroAchievements, your username and API key are used solely to connect securely to the
+      RetroAchievements service via HTTPS.</p>
+    <p>We do not store your RetroAchievements credentials on our servers.</p>
 
-    <h2>5. Data Usage</h2>
-    <p>We do not sell personal information. Any data collected by third-party services is used only to provide emulator functionality, enable features, and improve app performance.</p>
+    <h2>5. Advertising</h2>
+    <p>RetroPal displays advertisements through Google AdMob.</p>
+    <p>AdMob may collect:</p>
+    <ul>
+      <li>Advertising ID</li>
+      <li>Device identifiers</li>
+      <li>Usage data</li>
+      <li>IP address</li>
+      <li>Approximate location</li>
+    </ul>
+    <p>This data is processed according to Google’s Privacy Policy.</p>
+    <p>You may reset or disable your advertising ID in your device settings.</p>
 
-    <h2>6. Third-Party Services</h2>
-    <p>RetroPal may use third-party services such as Google Play Services, AdMob, and Firebase, each of which operates under its own privacy policy. We encourage you to review their policies.</p>
+    <h2>6. Analytics</h2>
+    <p>We use Firebase Analytics to understand app usage and improve performance.</p>
+    <p>Firebase may collect:</p>
+    <ul>
+      <li>Device information</li>
+      <li>App usage events</li>
+      <li>Crash reports</li>
+      <li>Anonymous identifiers</li>
+    </ul>
+    <p>This data helps improve stability and user experience.</p>
 
-    <h2>7. Children's Privacy</h2>
-    <p>RetroPal does not knowingly collect personal information from children under 13. If you believe a child has provided us with personal data, please contact us so we can address it.</p>
+    <h2>7. Data Sharing</h2>
+    <p>We do not sell personal data.</p>
+    <p>Information may be processed by trusted third-party providers (Google Play Services, AdMob, Firebase,
+      RetroAchievements) solely to provide app functionality.</p>
 
-    <h2>8. Contact</h2>
-    <p>For questions about this Privacy Policy, contact us at <a href="mailto:yourmateapps@gmail.com">yourmateapps@gmail.com</a> or visit <a href="https://yourmateapps.github.io">yourmateapps.github.io</a>.</p>
+    <h2>8. Children's Privacy</h2>
+    <p>RetroPal is not directed toward children under 13.</p>
+    <p>We do not knowingly collect personal information from children. If you believe a child has provided personal
+      data, please contact us.</p>
 
-    <p class="legal-notice">RetroPal is an independent emulator application and is not affiliated with or endorsed by any console manufacturer or game publisher. All trademarks belong to their respective owners.</p>
+    <h2>9. Security</h2>
+    <p>All communications with Google, Firebase, and RetroAchievements use secure HTTPS connections.</p>
+
+    <h2>10. Your Rights</h2>
+    <p>Depending on your location, you may have rights to:</p>
+    <ul>
+      <li>Access your data</li>
+      <li>Request deletion</li>
+      <li>Revoke permissions</li>
+    </ul>
+    <p>You may revoke Google access at any time through your Google account settings.</p>
+
+    <h2>11. Contact</h2>
+    <p>For questions regarding this Privacy Policy, contact:</p>
+    <p><a href="mailto:yourmateapps@gmail.com">yourmateapps@gmail.com</a></p>
+    <p><a href="https://yourmateapps.github.io">https://yourmateapps.github.io</a></p>
+
+    <p class="legal-notice">RetroPal is an independent emulator application and is not affiliated with or endorsed by
+      any console manufacturer or game publisher. All trademarks belong to their respective owners.</p>
   </div>
 </body>
+
 </html>
