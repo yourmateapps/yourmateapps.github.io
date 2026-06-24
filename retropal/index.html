@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RetroPal | Your Mate Apps</title>
+  <meta name="description"
+    content="RetroPal is a clean, modern retro emulator for Android phones, tablets, and Android TV. 20+ classic systems with cloud saves, achievements, artwork, and controller support.">
+  <link rel="icon" type="image/png" href="../icons/retropal.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -14,9 +17,11 @@
     :root {
       --bg: #0f0f12;
       --surface: #1a1a1f;
+      --surface-hover: #20202a;
       --text: #e8e8ed;
       --text-muted: #9a9aa8;
       --accent: #7c5cff;
+      --accent-2: #00d2ff;
       --accent-soft: rgba(124, 92, 255, 0.15);
       --border: #2a2a32;
       --radius: 12px;
@@ -34,12 +39,30 @@
       color: var(--text);
       line-height: 1.7;
       min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Soft ambient glow to match the main site */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 92, 255, 0.18), transparent 70%);
+      filter: blur(40px);
+      z-index: -1;
+      pointer-events: none;
     }
 
     .container {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1.5rem 4rem;
     }
 
     a {
@@ -55,7 +78,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       align-items: center;
     }
 
@@ -66,57 +89,85 @@
 
     .back:hover {
       color: var(--text);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
     }
 
     .app-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: var(--radius);
-      background: var(--accent-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 1rem;
+      width: 84px;
+      height: 84px;
+      border-radius: 20px;
+      flex-shrink: 0;
+      box-shadow: 0 12px 30px rgba(124, 92, 255, 0.35);
     }
 
     h1 {
       font-family: 'Fraunces', serif;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
+      font-size: 2.4rem;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
     }
 
     .tagline {
       color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
       margin-bottom: 2rem;
+    }
+
+    .chip {
+      background: var(--accent-soft);
+      color: #c9bdff;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 500;
     }
 
     .btns {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      transition: background 0.2s, color 0.2s;
+      padding: 0.65rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-2px);
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: white;
-    }
-
-    .btn-primary:hover {
-      background: #8b6fff;
+      box-shadow: 0 6px 18px rgba(124, 92, 255, 0.35);
     }
 
     .btn-secondary {
@@ -131,41 +182,130 @@
     }
 
     h2 {
-      font-size: 1.15rem;
-      margin: 2rem 0 1rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      margin: 2.5rem 0 0.4rem;
       color: var(--text);
     }
 
-    .features {
-      list-style: none;
-    }
-
-    .features li {
-      padding: 0.5rem 0;
-      padding-left: 1.25rem;
-      position: relative;
+    .section-note {
       color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 1.25rem;
     }
 
-    .features li::before {
-      content: "•";
-      color: var(--accent);
-      position: absolute;
-      left: 0;
+    /* Supported systems grid */
+    .systems {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 0.65rem;
     }
 
-    .notice {
+    .system {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .system:hover {
+      background: var(--surface-hover);
+      border-color: rgba(124, 92, 255, 0.4);
+    }
+
+    .system .abbr {
+      display: block;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .system .name {
+      color: var(--text-muted);
+      font-size: 0.76rem;
+    }
+
+    .more-note {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    /* Feature cards */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .feature {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1rem 1.25rem;
+      padding: 1.2rem 1.3rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .feature:hover {
+      transform: translateY(-3px);
+      border-color: rgba(124, 92, 255, 0.4);
+    }
+
+    .feature .icon {
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .feature p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Notices */
+    .notice {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.3rem;
       margin-top: 1rem;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--text-muted);
     }
 
     .notice strong {
       color: var(--text);
+    }
+
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .app-icon {
+        width: 68px;
+        height: 68px;
+      }
     }
   </style>
 </head>
@@ -177,54 +317,125 @@
       <a href="privacy-policy.html" class="btn btn-secondary">Privacy Policy</a>
     </nav>
 
-    <div class="app-icon">RP</div>
-    <h1>RetroPal</h1>
-    <p class="tagline">A fast, lightweight retro console emulator built for smooth classic gaming on Android phones,
-      tablets, and TV. Responsive controls, optimized performance, and a clean interface for long play sessions.</p>
+    <div class="hero">
+      <img src="../icons/retropal.png" alt="RetroPal app icon" class="app-icon">
+      <div>
+        <h1>RetroPal</h1>
+        <p class="subtitle">Retro emulator for Android &amp; Android TV</p>
+      </div>
+    </div>
+
+    <p class="tagline">A clean, modern emulator that brings your classic game library back to life. Play the games you
+      legally own with cloud saves, achievements, automatic artwork, full controller support, and graphics options tuned
+      for every kind of retro gamer — on your phone or from the couch.</p>
+
+    <div class="platforms">
+      <span class="chip">📱 Phones &amp; Tablets</span>
+      <span class="chip">📺 Android TV</span>
+      <span class="chip">🎮 Gamepad &amp; Touch</span>
+    </div>
 
     <div class="btns">
-      <a href="https://play.google.com/store/apps/details?id=com.yourmateapps.retropal" class="btn btn-primary">Get on
-        Play Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.yourmateapps.retropal" target="_blank"
+        class="btn btn-primary">Get it on Google Play</a>
     </div>
 
     <h2>Supported Systems</h2>
-    <ul class="features">
-      <li>GB</li>
-      <li>GBC</li>
-      <li>GBA</li>
-      <li>NES</li>
-      <li>SNES</li>
-      <li>MD</li>
-      <li>SMS</li>
-      <li>GG</li>
-    </ul>
-    <p style="color: var(--text-muted); font-size: 0.9rem;">More systems may be added in future updates.</p>
+    <p class="section-note">From 8-bit handhelds to the Nintendo 64 — over 20 classic systems in one app.</p>
+    <div class="systems">
+      <div class="system"><span class="abbr">GB</span><span class="name">Game Boy</span></div>
+      <div class="system"><span class="abbr">GBC</span><span class="name">Game Boy Color</span></div>
+      <div class="system"><span class="abbr">GBA</span><span class="name">Game Boy Advance</span></div>
+      <div class="system"><span class="abbr">NES</span><span class="name">Nintendo Entertainment System</span></div>
+      <div class="system"><span class="abbr">SNES</span><span class="name">Super Nintendo</span></div>
+      <div class="system"><span class="abbr">N64</span><span class="name">Nintendo 64</span></div>
+      <div class="system"><span class="abbr">NDS</span><span class="name">Nintendo DS</span></div>
+      <div class="system"><span class="abbr">PS1</span><span class="name">PlayStation</span></div>
+      <div class="system"><span class="abbr">MD</span><span class="name">Mega Drive / Genesis</span></div>
+      <div class="system"><span class="abbr">SMS</span><span class="name">Sega Master System</span></div>
+      <div class="system"><span class="abbr">GG</span><span class="name">Game Gear</span></div>
+      <div class="system"><span class="abbr">SG-1000</span><span class="name">Sega SG-1000</span></div>
+      <div class="system"><span class="abbr">PCE</span><span class="name">PC Engine</span></div>
+      <div class="system"><span class="abbr">SGX</span><span class="name">SuperGrafx</span></div>
+      <div class="system"><span class="abbr">NGP / NGPC</span><span class="name">Neo Geo Pocket / Color</span></div>
+      <div class="system"><span class="abbr">WS / WSC</span><span class="name">WonderSwan / Color</span></div>
+      <div class="system"><span class="abbr">INTV</span><span class="name">Intellivision</span></div>
+      <div class="system"><span class="abbr">A2600</span><span class="name">Atari 2600</span></div>
+      <div class="system"><span class="abbr">TIC-80</span><span class="name">Fantasy Console</span></div>
+      <div class="system"><span class="abbr">PICO-8</span><span class="name">Fantasy Console</span></div>
+    </div>
+    <p class="more-note">…and more systems added in regular updates.</p>
 
     <h2>Features</h2>
-    <ul class="features">
-      <li>Accurate retro console emulation</li>
-      <li>Smooth performance optimized for mobile and TV</li>
-      <li>External Bluetooth and USB controller support</li>
-      <li>Customizable on-screen controls</li>
-      <li>In-game save support (SRAM)</li>
-      <li>Fast-forward option</li>
-      <li>Clean, distraction-free interface</li>
-      <li>RetroAchievements integration (optional login)</li>
-      <li>Automatic cover art and metadata support</li>
-      <li>Lightweight and stable design</li>
-    </ul>
+    <p class="section-note">Modern conveniences wrapped around faithful emulation.</p>
+    <div class="feature-grid">
+      <div class="feature">
+        <span class="icon">🏆</span>
+        <h3>RetroAchievements</h3>
+        <p>Unlock and track achievements as you play your favorites, just like modern titles.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">☁️</span>
+        <h3>Cloud Save Backup</h3>
+        <p>Back up your progress to Google Drive and keep your saves safe across reinstalls and devices.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">💾</span>
+        <h3>Import Your Saves</h3>
+        <p>Bring existing save files with you so you never have to start a game over.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">🖼️</span>
+        <h3>Automatic Artwork</h3>
+        <p>Box art and metadata are fetched automatically to build a beautiful, browsable library.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">🎮</span>
+        <h3>Controller-First UI</h3>
+        <p>Navigate everything from menus to gameplay with a gamepad — or use touch controls on the go.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">📺</span>
+        <h3>Android TV Ready</h3>
+        <p>Lean back and enjoy your whole collection on the big screen, built for the living room.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">🌐</span>
+        <h3>Wireless ROM Transfer</h3>
+        <p>A built-in HTTP server makes moving your game files onto your TV effortless — no cables needed.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">✨</span>
+        <h3>Enhanced Graphics</h3>
+        <p>Auto mode sharpens and upscales visuals for a crisp, modern look on high-resolution screens.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">🔲</span>
+        <h3>Pixel Perfect Mode</h3>
+        <p>Prefer authenticity? Keep every pixel exactly as it was on the original hardware.</p>
+      </div>
+      <div class="feature">
+        <span class="icon">🚀</span>
+        <h3>Improved NDS Core</h3>
+        <p>Custom Nintendo DS enhancements built on a modified melonDS core for smoother play.</p>
+      </div>
+    </div>
 
     <h2>Important</h2>
     <div class="notice">
-      <strong>RetroPal does not include any games.</strong> You must provide your own legally obtained game files (ROMs)
-      to use this application.
+      <strong>RetroPal does not include any games, ROMs, BIOS files, or copyrighted content.</strong> Please use your own
+      legally obtained game files. Some systems may require legally obtained BIOS files to run.
     </div>
 
     <h2>Legal Notice</h2>
     <div class="notice">
-      RetroPal is an independent emulator application and is not affiliated with or endorsed by any console manufacturer
-      or game publisher. All trademarks belong to their respective owners.
+      RetroPal is an independent emulator and is not affiliated with, sponsored by, or endorsed by any console
+      manufacturer or game publisher. All product names, logos, and trademarks belong to their respective owners.
     </div>
+
+    <footer>
+      <p>Made with care by Your Mate Apps · <a href="privacy-policy.html">Privacy Policy</a></p>
+    </footer>
   </div>
 </body>
 
